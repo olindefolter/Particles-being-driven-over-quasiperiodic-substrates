@@ -1,0 +1,150 @@
+#!/bin/bash
+
+# ---------------------------------------------------------------------------
+# SLURM JOB CONFIGURATION
+# ---------------------------------------------------------------------------
+
+# Name assigned to the SLURM job.
+# This name appears in the scheduler queue and job-accounting information.
+#SBATCH -J N7_multi
+
+# Submit the job to the cluster partition named "short".
+#SBATCH -p short
+
+# Maximum wall-clock time allowed for each SLURM array task.
+# The job will be terminated if it exceeds 24 hours.
+#SBATCH -t 24:00:00
+
+# Request one compute node for each array task.
+#SBATCH -N 1
+
+# Request one SLURM task/process on that node.
+#
+# Parallel execution inside this task is handled later by Python
+# multiprocessing rather than by launching multiple SLURM tasks.
+#SBATCH -n 1
+
+# Allocate eight CPU cores to the single SLURM task.
+#
+# The Python orchestration script reads this allocation through
+# SLURM_CPUS_PER_TASK and creates the corresponding number of
+# multiprocessing workers.
+#SBATCH -c 8
+
+# Write standard output from each job to a SLURM log file.
+# %j is replaced automatically by the SLURM job ID.
+#SBATCH --output=slurm-%j.out
+
+# Write standard error messages to a separate SLURM log file.
+#SBATCH --error=slurm-%j.err
+
+# Create a SLURM job array containing task IDs 0 through 19.
+#
+# The "%20" limit allows up to 20 array tasks to run concurrently.
+# Each array task receives its own SLURM_ARRAY_TASK_ID, which is later
+# used by MultiDenseovito.py to determine which subset of simulation
+# structures belongs to that task.
+#SBATCH --array=0-19%20
+
+
+# --- load cluster toolchain ---
+
+# Load the user-specific cluster software/toolchain configuration.
+# This script prepares libraries and environment settings required by
+# the simulation software on the cluster.
+source ~/sourcinglibs.sh
+
+
+# --- activate conda ---
+
+# Load Conda shell functionality so that environments can be activated
+# correctly from a non-interactive SLURM job.
+source ~/miniconda3/etc/profile.d/conda.sh
+
+# Activate the Python environment containing the packages required for
+# the magcolloids simulation and analysis workflow.
+conda activate mag_env
+
+
+# --- environment for Python + LAMMPS ---
+
+# Add the user's work directory to PYTHONPATH.
+#
+# This allows Python to locate project modules stored under $HOME/work
+# when MultiDenseovito.py imports the production simulation code.
+export PYTHONPATH=$HOME/work:$PYTHONPATH
+
+# Add the locally compiled serial LAMMPS executable directory to PATH.
+#
+# This makes the "lmp" executable accessible from the command line
+# during the cluster job.
+export PATH=$HOME/src/aortiza-lammps/build-serial:$PATH
+
+# Define the base directory used by the Python simulation scripts.
+#
+# MultiDenseovito.py uses this environment variable to locate the
+# relaxed initial configurations and organize simulation outputs.
+export BASE_DIR=$HOME/work/Vertices_Teselas
+
+
+# --- prevent thread oversubscription ---
+
+# Restrict OpenMP-based numerical operations to one thread per process.
+#
+# The Python script already performs process-level parallelization using
+# multiprocessing, so limiting internal numerical-library threading avoids
+# creating more active threads than the CPUs allocated by SLURM.
+export OMP_NUM_THREADS=1
+
+# Restrict Intel MKL to one thread per Python worker process.
+export MKL_NUM_THREADS=1
+
+# Restrict OpenBLAS to one thread per Python worker process.
+export OPENBLAS_NUM_THREADS=1
+
+# Restrict NumExpr numerical operations to one thread per process.
+export NUMEXPR_NUM_THREADS=1
+
+
+# --- run ---
+
+# Move into the directory containing the Python cluster-execution script.
+cd $HOME/work/scripts
+
+# ---------------------------------------------------------------------------
+# ENVIRONMENT / EXECUTABLE DIAGNOSTICS
+# ---------------------------------------------------------------------------
+
+# Print a simple marker to the SLURM output file before execution.
+echo "debug things"
+
+# Print the current working directory.
+# This verifies that the job is running from the expected scripts directory.
+echo "PWD=$(pwd)"
+
+# Print the executable search path used by the SLURM job.
+echo "PATH=$PATH"
+
+# Check whether the LAMMPS executable can be found through PATH.
+#
+# If it cannot be located, print an explicit diagnostic message rather
+# than leaving the cause of a later simulation failure unclear.
+which lmp || echo "lmp NOT FOUND"
+
+# Test whether the LAMMPS executable can actually start.
+#
+# The "-h" option prints LAMMPS help information and "head" keeps only
+# the beginning of that output in the SLURM log.
+#
+# If LAMMPS cannot execute, an explicit diagnostic message is printed.
+lmp -h |  head || echo "lmp cannot run"
+
+
+# ---------------------------------------------------------------------------
+# START THE PYTHON SIMULATION ORCHESTRATOR
+# ---------------------------------------------------------------------------
+
+# Launch the Python script responsible for interpreting the SLURM array
+# task ID, assigning structure tags, and distributing individual angular
+# simulations across the eight CPUs allocated above.
+python MultiDenseovito.py
