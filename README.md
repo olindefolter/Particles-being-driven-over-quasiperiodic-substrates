@@ -107,13 +107,13 @@ Quasiperiodic Tiling / Vertices
 ```text
 simulation/
 │
-├── PreAllPartiOvito...
+├── GenerationFile.py
 │   Generates the initial particle system.
 │   Reads the quasiperiodic vertices, cleans and crops the structure,
 │   generates the mobile-particle population, and performs the
 │   damping/minimization procedure.
 │
-├── PostAllPartiOvitoN13FR50.py
+├── SimulationFile(uses existing file).py
 │   Defines and executes an individual production simulation.
 │   Reads a relaxed configuration, reconstructs both particle
 │   populations, defines the magnetic field, freezes the substrate,
@@ -124,7 +124,7 @@ simulation/
 │   Uses SLURM array information to distribute configurations and
 │   multiprocessing to execute different magnetic-field directions.
 │
-└── multiRunOvito.sub
+└── SlurmJob.sub
     SLURM submission script.
     Defines cluster resources, activates the required environment,
     configures LAMMPS, and launches the Python simulation manager.
@@ -132,10 +132,10 @@ simulation/
 
 analysis/
 │
-├── MultiComparisonV2.ipynb
+├── DataAnalysis1.ipynb
 │   Velocity and directional analysis.
 │
-└── MSDV3.ipynb
+└── DataAnalysis2.ipynb
     Mean-squared-displacement analysis.
 ```
 
