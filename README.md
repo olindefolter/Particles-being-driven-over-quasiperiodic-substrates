@@ -155,7 +155,7 @@ The generation script performs the following operations:
 6. Generate the mobile particle population at random initial positions.
 7. Combine the two populations into the simulation system.
 
-For the `P25` configuration, the number of mobile particles is defined as approximately **25% of the number of fixed quasiperiodic particles**.
+For the `P25` configuration, the number of mobile particles is defined as approximately **25% of the number of fixed quasiperiodic particles**. This can be adapted as needed
 
 ---
 
