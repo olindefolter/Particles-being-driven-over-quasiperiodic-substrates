@@ -270,7 +270,7 @@ simulation timestep/frame
 
 The main analysis focuses on **particle type 2**, corresponding to the mobile particle population.
 
-Trajectory files may be compressed as:
+Trajectory files may be compressed as GNU zip:
 
 ```text
 .lammpstrj.gz
