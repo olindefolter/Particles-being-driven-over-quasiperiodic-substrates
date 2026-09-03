@@ -26,7 +26,7 @@ The simulated system consists of two particle populations.
 
 Type-1 particles define the quasiperiodic structure.
 
-These particles remain fixed during the production simulations and form the substrate/landscape over which the mobile particles move.
+These particles remain fixed during the production simulations and form the substrate/landscape over which the mobile particles move. The points that define the quasiperiodic structure where developed by Dr. Alan Mendoza 
 
 Base parameters:
 
