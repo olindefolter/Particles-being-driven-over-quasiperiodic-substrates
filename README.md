@@ -119,7 +119,7 @@ simulation/
 │   populations, defines the magnetic field, freezes the substrate,
 │   and generates/runs the LAMMPS simulation.
 │
-├── MultiDenseovitoN13FR50.py
+├── ClusterParallelFile.py
 │   Parallel simulation manager.
 │   Uses SLURM array information to distribute configurations and
 │   multiprocessing to execute different magnetic-field directions.
