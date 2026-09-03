@@ -4,8 +4,7 @@
 
 This repository contains the core simulation-generation and analysis workflow used to study the dynamics of mobile particles driven over a fixed quasiperiodic particle structure.
 
-The simulations were generated using **LAMMPS** through the `magcolloids` Python framework and executed on a computing cluster using **SLURM** and Python multiprocessing.
-
+The simulations were generated using **LAMMPS** through the 'magcolloids' Python framework developed by Antonio Ortiz Ambriz [magcolloids](https://github.com/aortiza/magcolloids)
 The main analysis focuses on:
 
 * Particle velocity and direction of motion
