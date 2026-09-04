@@ -349,7 +349,7 @@ Count-weighted averaging
 Angular / Fourier analysis
 ```
 
-The functions in this notebook were used as the base analysis tools for several different simulation configurations.
+
 
 ---
 
