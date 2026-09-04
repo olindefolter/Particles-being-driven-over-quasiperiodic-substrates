@@ -294,8 +294,8 @@ The base naming convention is:
 
 | Label                 | Meaning                                                                       |
 | --------------------- | ----------------------------------------------------------------------------- |
-| `N13`                 | **[DEFINE N13]**                                                              |
-| `Ne`                  | **[DEFINE Ne]**                                                               |
+| `N13`                 | Rotational symmetry (13)                                                              |
+| `Ne`                  | Version number of substrate                                                              |
 | `P25`                 | Mobile-particle population approximately 25% of the fixed-particle population |
 | `R`                   | Repeated realization / configuration                                          |
 | `FR50`                | Output frame rate of 50 Hz                                                    |
