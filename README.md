@@ -349,7 +349,7 @@ Count-weighted averaging
 Angular / Fourier analysis
 ```
 
-```
+
 
 ---
 
@@ -362,11 +362,9 @@ Angular / Fourier analysis
 Particle displacement is measured relative to each particle's initial recorded position:
 
 $$
-MSD(t)
-=
+\mathrm{MSD}(t) =
 \left\langle
-[x(t)-x(0)]^2 +
-[y(t)-y(0)]^2
+[x(t)-x(0)]^2 + [y(t)-y(0)]^2
 \right\rangle
 $$
 
@@ -377,11 +375,9 @@ where the average is taken over the mobile-particle population.
 A second implementation calculates displacement as a function of time lag:
 
 $$
-MSD(\tau)
-=
+\mathrm{MSD}(\tau) =
 \left\langle
-[x(t+\tau)-x(t)]^2 +
-[y(t+\tau)-y(t)]^2
+[x(t+\tau)-x(t)]^2 + [y(t+\tau)-y(t)]^2
 \right\rangle
 $$
 
