@@ -357,34 +357,35 @@ Angular / Fourier analysis
 
 `DataAnalysis2` contains two MSD implementations.
 
-## Initial-reference MSD
+### Initial-reference MSD
 
 Particle displacement is measured relative to each particle's initial recorded position:
 
-$$
+```math
 \mathrm{MSD}(t)
 =
 \frac{1}{N}
 \sum_{i=1}^{N}
-\left[(x_i(t)-x_i(0))^2+(y_i(t)-y_i(0))^2\right]
-$$
+\left[
+(x_i(t)-x_i(0))^2 + (y_i(t)-y_i(0))^2
+\right]
+```
 
 where the average is taken over the mobile-particle population.
 
-## Time-lag MSD
+### Time-lag MSD
 
 A second implementation calculates displacement as a function of time lag:
 
-$$
+```math
 \mathrm{MSD}(\tau)
 =
 \frac{1}{N_{\tau}}
 \sum_i \sum_t
 \left[
-(x_i(t+\tau)-x_i(t))^2+
-(y_i(t+\tau)-y_i(t))^2
+(x_i(t+\tau)-x_i(t))^2 + (y_i(t+\tau)-y_i(t))^2
 \right]
-$$
+```
 
 using all available particles and valid time origins.
 
