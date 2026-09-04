@@ -362,10 +362,14 @@ Angular / Fourier analysis
 Particle displacement is measured relative to each particle's initial recorded position:
 
 $$
-\mathrm{MSD}(t) =
-\left\langle
-[x(t)-x(0)]^2 + [y(t)-y(0)]^2
-\right\rangle
+\mathrm{MSD}(t)
+=
+\frac{1}{N}
+\sum_{i=1}^{N}
+\left[
+(x_i(t)-x_i(0))^2+
+(y_i(t)-y_i(0))^2
+\right]
 $$
 
 where the average is taken over the mobile-particle population.
@@ -375,10 +379,14 @@ where the average is taken over the mobile-particle population.
 A second implementation calculates displacement as a function of time lag:
 
 $$
-\mathrm{MSD}(\tau) =
-\left\langle
-[x(t+\tau)-x(t)]^2 + [y(t+\tau)-y(t)]^2
-\right\rangle
+\mathrm{MSD}(\tau)
+=
+\frac{1}{N_{\tau}}
+\sum_i \sum_t
+\left[
+(x_i(t+\tau)-x_i(t))^2+
+(y_i(t+\tau)-y_i(t))^2
+\right]
 $$
 
 using all available particles and valid time origins.
