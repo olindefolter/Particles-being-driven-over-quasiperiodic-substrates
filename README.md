@@ -393,31 +393,6 @@ This implementation can then be averaged across repeated realizations and differ
 
 ---
 
-# Software Requirements
-
-The core workflow uses:
-
-```text
-Python
-NumPy
-pandas
-Matplotlib
-OVITO
-magcolloids
-LAMMPS
-SLURM
-```
-
-The original cluster environment used the Conda environment:
-
-```text
-mag_env
-```
-
-Exact package versions were not recorded in the current scripts and may need to be reconstructed depending on the computing environment.
-
----
-
 # Running the Workflow
 
 A typical workflow is:
@@ -474,22 +449,5 @@ Many additional versions were produced to test different parameters, system size
 
 Some file paths and directory structures are specific to the original Windows workstation and computing-cluster environments and will need to be modified when running the project on another system.
 
-The scripts have intentionally been preserved close to the versions used during the original research rather than being extensively refactored after the project was completed.
+The scripts have intentionally been preserved close to the versions used during the original research rather than being extensively refactored.
 
----
-
-# Handoff Notes
-
-For future work, the most reusable components are:
-
-* Initial particle generation and relaxation procedure
-* Production simulation construction
-* Magnetic-field angular sweep
-* SLURM/multiprocessing workflow
-* Trajectory-to-particle-data conversion
-* Angular velocity analysis
-* Run alignment and weighted averaging
-* Initial-reference MSD
-* Time-lag MSD
-
-These functions can be adapted to new quasiperiodic structures, particle concentrations, magnetic-field parameters, or simulation conditions by modifying the relevant input paths and physical parameters.
