@@ -366,10 +366,7 @@ $$
 =
 \frac{1}{N}
 \sum_{i=1}^{N}
-\left[
-(x_i(t)-x_i(0))^2+
-(y_i(t)-y_i(0))^2
-\right]
+\left[(x_i(t)-x_i(0))^2+(y_i(t)-y_i(0))^2\right]
 $$
 
 where the average is taken over the mobile-particle population.
