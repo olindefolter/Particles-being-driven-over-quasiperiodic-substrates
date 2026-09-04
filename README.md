@@ -297,7 +297,7 @@ The base naming convention is:
 | `N13`                 | Rotational symmetry (13)                                                              |
 | `Ne`                  | Version number of substrate                                                              |
 | `P25`                 | Mobile-particle population approximately 25% of the fixed-particle population |
-| `R`                   | Repeated realization / configuration                                          |
+| `R`                   | Run number                                          |
 | `FR50`                | Output frame rate of 50 Hz                                                    |
 | Final numerical value | Magnetic-field tilt direction in degrees                                      |
 | `type 1`              | Fixed quasiperiodic particle population                                       |
