@@ -311,7 +311,7 @@ Additional naming conventions may appear in parameter-specific versions of the s
 
 ## Velocity and Directional Analysis
 
-`MultiComparisonV2.ipynb` provides the base workflow for analyzing particle motion.
+`DataAnalysis1` provides the base workflow for analyzing particle motion.
 
 The general analysis sequence is:
 
@@ -355,7 +355,7 @@ The functions in this notebook were used as the base analysis tools for several 
 
 # Mean-Squared Displacement
 
-`MSDV3.ipynb` contains two MSD implementations.
+`DataAnalysis2` contains two MSD implementations.
 
 ## Initial-reference MSD
 
